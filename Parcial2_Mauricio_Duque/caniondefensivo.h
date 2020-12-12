@@ -1,5 +1,5 @@
-#ifndef CANINODEFENSIVO_H
-#define CANINODEFENSIVO_H
+#ifndef CANIONDEFENSIVO_H
+#define CANIONDEFENSIVO_H
 #include <math.h>
 #include <iostream>
 #include "canionofensivo.h"

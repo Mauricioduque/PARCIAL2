@@ -4,10 +4,10 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        caninodefensivo.cpp \
+        caniondefensivo.cpp \
         canionofensivo.cpp \
         main.cpp
 
 HEADERS += \
-    caninodefensivo.h \
+    caniondefensivo.h \
     canionofensivo.h

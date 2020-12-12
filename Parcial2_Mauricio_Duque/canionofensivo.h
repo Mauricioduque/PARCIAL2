@@ -1,6 +1,6 @@
 #ifndef CANIONOFENSIVO_H
 #define CANIONOFENSIVO_H
-#include "caninodefensivo.h"
+#include "caniondefensivo.h"
 
 class canionOfensivo
 {
@@ -30,3 +30,4 @@ public:
 };
 
 #endif // CANIONOFENSIVO_H
+

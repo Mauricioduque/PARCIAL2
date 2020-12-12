@@ -1,56 +1,55 @@
-#include "canionofensivo.h"
+#include "caniondefensivo.h"
 
-float canionOfensivo::getD() const
+float canionDefensivo::getD() const
 {
     return d;
 }
 
-void canionOfensivo::setD(float value)
+void canionDefensivo::setD(float value)
 {
     d = value;
 }
 
-
-float canionOfensivo::getXo() const
+float canionDefensivo::getXd() const
 {
-    return Xo;
+    return Xd;
 }
 
-void canionOfensivo::setXo(float value)
+void canionDefensivo::setXd(float value)
 {
-    Xo = value;
+    Xd = value;
 }
 
-float canionOfensivo::getYo() const
+float canionDefensivo::getYd() const
 {
-    return Yo;
+    return Yd;
 }
 
-void canionOfensivo::setYo(float value)
+void canionDefensivo::setYd(float value)
 {
-    Yo = value;
+    Yd = value;
 }
 
-float canionOfensivo::getD0() const
+float canionDefensivo::getDd() const
 {
-    return d0;
+    return dd;
 }
 
-void canionOfensivo::setD0(float value)
+void canionDefensivo::setDd(float value)
 {
-    d0 = value;
+    dd = value;
 }
 
-canionOfensivo::canionOfensivo()
+canionDefensivo::canionDefensivo()
 {
 
 }
 
-void canionOfensivo::disparosOfensivos(float Xd, float Yd, int Vini)
+void canionDefensivo::disparosDefensivos(float Xo, float Yo, int Vini)
 {
     int impacto=0;
     double pi=3.1416;
-    float G=9.81;
+    float G=9.8;
     float x=0, y=0;
     float Vxini,Vyini;
     int V0=0;
@@ -58,16 +57,16 @@ void canionOfensivo::disparosOfensivos(float Xd, float Yd, int Vini)
     int angle=0;
     for (V0=Vini;;V0+=5){
         for (angle=0;angle<90;angle++){
-            Vxini=V0*cos(angle*pi/180);
+            Vxini=V0*cos((angle+90)*pi/180);
             for (t=0;;t++){
-                Vyini=V0*sin(angle*pi/180)-G*t;
+                Vyini=V0*sin((angle+90)*pi/180)-G*t;
                 x=Vxini*t;
-                y=getYo()+ Vyini*t-(0.5*G*t*t);
-                if(sqrt(pow((Xd-x),2)+pow((Yd-y),2))<=getD0()){
+                y=getYd()+ Vyini*t-(0.5*G*t*t);
+                if(sqrt(pow((Xo-x),2)+pow((Yo-y),2))<=getDd()){
                     if(y<0) y=0;
                     ImprimirDatos(angle,V0,x,y,t);
                     impacto+=1;
-                    V0+=30;
+                    V0+=50;
                     break;
                 }
                 if(y<0)break;
@@ -81,7 +80,7 @@ void canionOfensivo::disparosOfensivos(float Xd, float Yd, int Vini)
     }
 }
 
-void canionOfensivo::ImprimirDatos(int angle, float V0, float x, float y, float t)
+void canionDefensivo::ImprimirDatos(int angle, float V0, float x, float y, float t)
 {
     cout<<"Impacto con un angulo de: "<<angle<<" grados"<<endl;
     cout<<"Impacto con una velocidad incial: "<<V0<<" m/s"<<endl;
@@ -89,9 +88,3 @@ void canionOfensivo::ImprimirDatos(int angle, float V0, float x, float y, float 
     cout<<"Impacto con posicion en Y: "<<y <<" m"<<endl;
     cout<<"Con tiempo: "<<t<<" s"<<endl<<endl;
 }
-
-
-
-
-
-

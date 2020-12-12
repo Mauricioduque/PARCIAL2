@@ -1,4 +1,4 @@
-#include "caninodefensivo.h"
+#include "caniondefensivo.h"
 #include "canionofensivo.h"
 
 int main()
@@ -40,6 +40,8 @@ int main()
          break;
          case 3:
          break;
+        case 4:
+            break;
         }
 
     }
