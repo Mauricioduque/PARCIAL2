@@ -38,6 +38,8 @@ int main()
          case 2:
             disDefensivo.disparosDefensivos(0,100,Vini);
          break;
+         case 3:
+         break;
         }
 
     }
