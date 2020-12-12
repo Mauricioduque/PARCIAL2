@@ -88,3 +88,49 @@ void canionDefensivo::ImprimirDatos(int angle, float V0, float x, float y, float
     cout<<"Impacto con posicion en Y: "<<y <<" m"<<endl;
     cout<<"Con tiempo: "<<t<<" s"<<endl<<endl;
 }
+
+void canionDefensivo::disparoDefensa(float Yo, float Xd, float Yd, int Vini, int anglei, int V2ini)
+{
+    int impacto=0;
+        double pi=3.1416;
+        float G=9.8;
+        float x=0, y=0,x2=0,y2=0;
+        float Vxini,Vyini,Vxini2,Vyini2;
+        int V0=0;
+        float t=0;
+        int angle=0;
+        //Velocidades del disparo ofensivo
+        Vxini2=V2ini*cos((anglei)*pi/180);
+        Vyini2=V2ini*sin((anglei)*pi/180);
+        for (V0=Vini;;V0+=5){
+            for (angle=0;angle<90;angle++){
+                //Velocidades para generar disparos defensivos
+                Vxini=V0*cos((angle+90)*pi/180);
+                Vyini=V0*sin((angle+90)*pi/180);
+                for (t=0;;t++){
+                    //Coordenadas disparo ofensivo
+                    x2=Vxini2*(t+2.5);
+                    y2=Yo+ Vyini2*(t+2.5)-(0.5*G*(t+2.5)*(t+2.5));
+                    //coordenandas disparo defensivo
+                    x=Xd+Vxini*t;
+                    y=Yd+ Vyini*t-(0.5*G*t*t);
+                    if(sqrt(pow((x2-x),2)+pow((y2-y),2))<=getDd()){
+                        if(y<0) y=0;
+
+                        ImprimirDatos(anglei,V2ini,x2,y2,t+2.5);
+                        cout<<"-------------------------"<<endl<<endl;
+                        ImprimirDatos(angle,V0,x,y,t);
+                        impacto+=1;
+                        V0+=50;
+                        break;
+                    }
+                    if(y<0)break;
+                }
+                if (impacto==3) break;
+            }
+            if (impacto==3) break;
+        }
+        if (impacto!=3){
+            cout<<"No impacto en los disparos esperados"<<endl;
+        }
+}

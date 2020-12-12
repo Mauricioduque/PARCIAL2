@@ -21,6 +21,7 @@ public:
     canionDefensivo();
     void disparosDefensivos(float Xo,float Yo,int Vini);
     void ImprimirDatos(int angle,float V0,float x,float y,float t);
+    void disparoDefensa(float Yo,float Xd,float Yd, int Vini,int anglei, int V2ini);
 
 
 
@@ -34,4 +35,4 @@ public:
     void setDd(float value);
 };
 
-#endif // CANINODEFENSIVO_H
+#endif // CANIONDEFENSIVO_H

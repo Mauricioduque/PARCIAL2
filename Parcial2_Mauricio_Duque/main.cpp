@@ -33,12 +33,13 @@ int main()
 
         switch (a) {
          case 1:
-            disOfensivo.disparosOfensivos(d,20,Vini);
+            disOfensivo.disparosOfensivos(d,Yd,Vini);
          break;
          case 2:
-            disDefensivo.disparosDefensivos(0,100,Vini);
+            disDefensivo.disparosDefensivos(0,Yo,Vini);
          break;
          case 3:
+            disDefensivo.disparoDefensa(Yo,d,Yd,Vini,44,160);
          break;
         case 4:
             break;
