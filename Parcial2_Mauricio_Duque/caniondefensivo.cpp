@@ -48,7 +48,7 @@ canionDefensivo::canionDefensivo()
 void canionDefensivo::disparosDefensivos(float Xo, float Yo, int Vini)
 {
     int impacto=0;
-    double pi=3.1416;
+    float pi=3.1416;
     float G=9.81;
     float x=0, y=0;
     float Vxini,Vyini;
@@ -60,7 +60,7 @@ void canionDefensivo::disparosDefensivos(float Xo, float Yo, int Vini)
             for (t=0;;t++){
                 //Calculo de las velocidades en X y Y de la bala defensiva
                 Vxini=V0*cos((angle+90)*pi/180);
-                Vyini=V0*sin((angle+90)*pi/180)-G*t;
+                Vyini=V0*sin((angle+90)*pi/180);
                 //Calculo de las posiciones en X y Y de la bala defensiva
                 x=Vxini*t;
                 y=getYd()+ Vyini*t-(0.5*G*t*t);
@@ -78,12 +78,10 @@ void canionDefensivo::disparosDefensivos(float Xo, float Yo, int Vini)
         }
         if (impacto==3) break;
     }
-    if (impacto!=3){
-        cout<<"No impacto sobre el canion Ofensivo"<<endl;
-    }
+    if (impacto!=3) cout<<"No impacto sobre el canion Ofensivo"<<endl;
 }
 
-void canionDefensivo::ImprimirDatos(int angle, float V0, float x, float y, float t)
+void canionDefensivo::ImprimirDatos(float angle, float V0, float x, float y, float t)
 {
     cout<<endl;
     cout<<"Impacto con un angulo de: "<<angle<<" grados"<<endl;
@@ -93,49 +91,39 @@ void canionDefensivo::ImprimirDatos(int angle, float V0, float x, float y, float
     cout<<"Con tiempo: "<<t<<" s"<<endl<<endl;
 }
 
-void canionDefensivo::disparoDefensa(float Yo, float Xd, float Yd, int Vini, int anglei, int V2ini)
+void canionDefensivo::disparoDefensa(float Yo, float Xd, float Yd, int anglei, int V2ini)
 {
-    int impacto=0;
-    double pi=3.1416;
+    float pi=3.1416;
     float G=9.8;
-    float x=0, y=0,x2=0,y2=0;
-    float Vxini,Vyini,Vxini2,Vyini2;
-    int V0=0;
-    float t=0;
-    int angle=0;
-    //Velocidad X con los datos del espia del disparo ofensivo
-    Vxini2=V2ini*cos((anglei)*pi/180);
-    for (V0=Vini;V0<=500;V0+=5){
-        for (angle=0;angle<90;angle++){
-            for (t=0;;t++){
-                //Velocidad Y con los datos del espia del disparo ofensivo
-                Vyini2=V2ini*sin((anglei)*pi/180)-G*t;
-                //Velocidades para generar disparos defensivos
-                Vxini=V0*cos((angle+90)*pi/180);
-                Vyini=V0*sin((angle+90)*pi/180)-G*t;
-                //Coordenadas disparo ofensivo
-                x2=Vxini2*(t+2.5);
-                y2=Yo+ Vyini2*(t+2.5)-(0.5*G*(t+2.5)*(t+2.5));
-                //coordenandas disparo defensivo
-                x=Xd+Vxini*t;
-                y=Yd+ Vyini*t-(0.5*G*t*t);
-                if(sqrt(pow((x2-x),2)+pow((y2-y),2))<=getDd()){
-                    if(y<0) y=0;
-                    cout<<"la bala ofensiva, segun los parametros dados por el espia fue destruida con:"<<endl;
-                    ImprimirDatos(anglei,V2ini,x2,y2,t+2.5);
-                    cout<<"-------------------------"<<endl<<endl;
-                    ImprimirDatos(angle,V0,x,y,t);
-                    impacto+=1;
-                    V0+=30;
-                    break;
-                }
-                if(y<0)break;
-            }
-            if (impacto==3) break;
-        }
-        if (impacto==3) break;
+    float x=0, y=0;
+    float t=0,thetaD,Vd;
+    for(float t2=0.5;t2<1;t2+=0.2){
+        t=(Xd-0.05*Xd)*t2/(V2ini*cos((anglei)*pi/180));
+        thetaD=atan((Yo-Yd+V2ini*t*sin((anglei)*pi/180)-2*G*t+2*G)/(Xd-V2ini*t*cos((anglei)*pi/180)));
+        Vd=((Yo-Yd+V2ini*t*sin((anglei)*pi/180))-2*G*t+2*G)/((t-2)*sin(thetaD));
+        x=V2ini*cos((anglei)*pi/180)*t;
+        y=Yo +V2ini*sin((anglei)*pi/180)*t-(0.5*G*t*t);
+        ImprimirDatos(thetaD*180/pi,Vd,x,y,t);
     }
-    if (impacto!=3){
-        cout<<"Con los parametros dados, no se impacto en la bala ofensiva"<<endl;
+}
+
+void canionDefensivo::disparoSinAfectacion(float Yo, float Xd, float Yd, int anglei, int V2ini)
+{
+    float pi=3.1416;
+    float G=9.8;
+    float x=0, y=0;
+    float t=0,thetaD,Vd,tfinal;
+    float t2=0.5;
+    for(;t2<1;t2+=0.1){
+        t=(Xd-0.05*Xd)*t2/(V2ini*cos((anglei)*pi/180));
+        thetaD=atan((Yo-Yd+V2ini*t*sin((anglei)*pi/180)-2*G*t+2*G)/(Xd-V2ini*t*cos((anglei)*pi/180)));
+        Vd=((Yo-Yd+V2ini*t*sin((anglei)*pi/180))-2*G*t+2*G)/((t-2)*sin(thetaD));
+        x=V2ini*cos((anglei)*pi/180)*t;
+        y=Yo +V2ini*sin((anglei)*pi/180)*t-(0.5*G*t*t);
+        tfinal=2+(Vd*sin(thetaD)+sqrt(Vd*sin(thetaD)*Vd*sin(thetaD)+2*G*Yd))/G;
+        if(tfinal>=(2+(Xd-Xd*0.025)/(Vd*cos(thetaD)))){
+            t2-=0.05;
+        }
+        else ImprimirDatos(thetaD*180/pi,Vd,x,y,t);
     }
 }

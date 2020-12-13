@@ -17,11 +17,13 @@ private:
 
 
 
+
 public:
     canionDefensivo();
     void disparosDefensivos(float Xo,float Yo,int Vini);
-    void ImprimirDatos(int angle,float V0,float x,float y,float t);
-    void disparoDefensa(float Yo,float Xd,float Yd, int Vini,int anglei, int V2ini);
+    void ImprimirDatos(float angle,float V0,float x,float y,float t);
+    void disparoDefensa(float Yo,float Xd,float Yd,int anglei, int V2ini);
+    void disparoSinAfectacion(float Yo,float Xd,float Yd,int anglei, int V2ini);
 
 
 

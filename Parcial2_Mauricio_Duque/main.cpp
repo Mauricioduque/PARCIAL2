@@ -5,7 +5,8 @@ int main()
 {
     canionOfensivo disOfensivo;
     canionDefensivo disDefensivo;
-    int Vini,VinO,angleO,a;
+    float Vini,VinO,angleO;
+    int a;
     float d,Yo,Yd;
     cout<<"Ingrese la condiciones iniciales"<<endl;
     cout<<"Altura del canion Ofensivo (m): ";
@@ -43,10 +44,25 @@ int main()
             cin>>VinO;
             cout<<"Angulo de la bala ofensiva(grados): ";
             cin>>angleO;
-            disDefensivo.disparoDefensa(Yo,d,Yd,Vini,angleO,VinO);
+            disDefensivo.disparoDefensa(Yo,d,Yd,angleO,VinO);
          break;
-        case 4:
-            break;
+         case 4:
+            cout<<"Ingrese los parametros del espia"<<endl;
+            cout<<"Velocidad incial de la bala ofensiva(m/s):";
+            cin>>VinO;
+            cout<<"Angulo de la bala ofensiva(grados): ";
+            cin>>angleO;
+            disDefensivo.disparoSinAfectacion(Yo,d,Yd,angleO,VinO);
+         break;
+         case 5:
+            cout<<"Ingrese los parametros del espia"<<endl;
+            cout<<"Velocidad incial de la bala defensiva(m/s):";
+            cin>>VinO;
+            cout<<"Angulo de la bala defensiva(grados): ";
+            cin>>angleO;
+            disOfensivo.contrataque(d,Yd,angleO,VinO);
+        break;
+
         }
 
     }

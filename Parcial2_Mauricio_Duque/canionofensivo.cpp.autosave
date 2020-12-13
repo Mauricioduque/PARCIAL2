@@ -107,7 +107,6 @@ void canionOfensivo::contrataque(float Xd, float Yd, float angleD, float Vd)
     A=L1*L1+L2*L2;
     B=2*(C2*L2-C1*L1);
     C=C1*C1+C2*C2-R*R;
-    t1=(-B+sqrt(B*B-4*A*C))/(2*A);
     t1=(-B-sqrt(B*B-4*A*C))/(2*A);
 
 
