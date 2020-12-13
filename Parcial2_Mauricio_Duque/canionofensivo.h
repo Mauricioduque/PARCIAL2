@@ -15,7 +15,7 @@ private:
 public:
     canionOfensivo();
     void disparosOfensivos(float Xd,float Yd,int Vini);
-    void ImprimirDatos(int angle,float V0,float x,float y,float t);
+    void ImprimirDatos(float angle,float V0,float x,float y,float t);
     void contrataque(float Xd,float Yd,float angleD,float Vd);
 
     float getD() const;

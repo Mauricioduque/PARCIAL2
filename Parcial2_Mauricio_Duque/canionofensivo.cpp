@@ -83,7 +83,7 @@ void canionOfensivo::disparosOfensivos(float Xd, float Yd, int Vini)
     if (impacto!=3) cout<<"No impacto sobre el canion Defensivo"<<endl;
 }
 
-void canionOfensivo::ImprimirDatos(int angle, float V0, float x, float y, float t)
+void canionOfensivo::ImprimirDatos(float angle, float V0, float x, float y, float t)
 {
     cout<<endl;
     cout<<"Impacto con un angulo de: "<<angle<<" grados"<<endl;
@@ -95,20 +95,13 @@ void canionOfensivo::ImprimirDatos(int angle, float V0, float x, float y, float 
 
 void canionOfensivo::contrataque(float Xd, float Yd, float angleD, float Vd)
 {
-    float C1,C2,L1,L2,R,A,B,C,t1;
-    float pi=3.1416;
-    float G=9.81;
-    //constantes para determinar el  tiempo en el cual el disparo defensivo,destruye al ofensivo
-    C1=Xd+2*Vd*cos(angleD*pi/180);
-    L1=Vd*cos(angleD*pi/180)+vels[0]*cos(angs[0]*pi/180);
-    C2=Yd-Yo-2*G-2*Vd*sin(angleD*pi/180);
-    L2=Vd*sin(angleD*pi/180)+2*G-vels[0]*sin(angs[0]*pi/180);
-    R=0.025*Xd;
-    A=L1*L1+L2*L2;
-    B=2*(C2*L2-C1*L1);
-    C=C1*C1+C2*C2-R*R;
-    t1=(-B+sqrt(B*B-4*A*C))/(2*A);
-    t1=(-B-sqrt(B*B-4*A*C))/(2*A);
+
+
+
+
+
+
+
 
 
 

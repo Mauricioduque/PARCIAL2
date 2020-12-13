@@ -126,4 +126,5 @@ void canionDefensivo::disparoSinAfectacion(float Yo, float Xd, float Yd, int ang
         }
         else ImprimirDatos(thetaD*180/pi,Vd,x,y,t);
     }
+
 }
