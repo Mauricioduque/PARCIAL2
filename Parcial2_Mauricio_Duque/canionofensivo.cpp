@@ -48,8 +48,6 @@ canionOfensivo::canionOfensivo()
 void canionOfensivo::disparosOfensivos(float Xd, float Yd, int Vini)
 {
     int impacto=0;
-    float pi=3.1416;
-    float G=9.81;
     float x=0, y=0;
     float Vxini,Vyini;
     int V0=0;
@@ -95,15 +93,30 @@ void canionOfensivo::ImprimirDatos(float angle, float V0, float x, float y, floa
 
 void canionOfensivo::contrataque(float Xd, float Yd, float angleD, float Vd)
 {
+    int impacto=0;
+    float C1,C2,L1,L2,R,A,B,C,t1,t,alphaO,Vo,x,y;
 
-
-
-
-
-
-
-
-
-
+    //constantes para determinar el  tiempo en el cual el disparo defensivo,destruye al ofensivo
+    C1=Xd+2*Vd*cos(angleD*pi/180);
+    L1=Vd*cos(angleD*pi/180)+vels[1]*cos(angs[1]*pi/180);
+    C2=Yd-Yo-2*G-2*Vd*sin(angleD*pi/180);
+    L2=Vd*sin(angleD*pi/180)+2*G-vels[1]*sin(angs[1]*pi/180);
+    R=0.025*Xd;
+    A=L1*L1+L2*L2;
+    B=2*(C2*L2-C1*L1);
+    C=C1*C1+C2*C2-R*R;
+    t1=(-B-sqrt(B*B-4*A*C))/(2*A);
+    //se definenen los tiempos para qu el contrataque del disparo ofensivo sea efetivo
+    if(t1>=3){
+        for(impacto=1;impacto<4;impacto++){
+            t=3+((t1-3)/(4.0))*impacto;
+            alphaO=atan((Yd-Yo+Vd*sin(angleD*pi/180)*(t-2)+G*0.5*(5-2*t))/(Xd-Vd*cos(angleD*pi/180)*(t-2)));
+            Vo=(Xd-Vd*cos(angleD*pi/180)*(t-2))/((t-3)*cos(alphaO));
+            x=Vo*cos(alphaO)*(t-3);
+            y=Yo +Vo*sin(alphaO)*(t-3)-(0.5*G*(t-3)*(t-3));
+            ImprimirDatos(alphaO*180/pi,Vo,x,y,t);
+         }
+    }
+    else cout<<"El disparo defensivo no puede destruirse"<<endl;
 
 }

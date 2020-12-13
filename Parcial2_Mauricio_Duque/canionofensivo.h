@@ -11,6 +11,8 @@ private:
     float d0=0.05*d;
     float angs[3]={};
     float vels[3]={};
+    float pi=3.1416;
+    float G=9.81;
 
 public:
     canionOfensivo();
