@@ -104,10 +104,15 @@ void canionDefensivo::disparoDefensa(float Yo, int anglei, int V2ini)
     //se comprueba si en t=2 la bala ya tiene el radio de explosion cerca del objetivo
     if(distanciaEuclidiana(Xd,x,Yd,y)>Xd*0.05){
         for(impacto=1;impacto<4;impacto++){
+            //Se particiona el tiempo en donde se impactara a la bala ofensiva,segun los rangos establecidos 1<t<t1
             t2=t1+((1-t1)/4.0)*impacto;
+            //se calcula el tiempo cuando chocan las balas teniendo el cuendo el radio de destruccion
             t=(Xd-0.05*Xd)*t2/(V2ini*cos((anglei)*pi/180));
+            //se calcula la velocidad y el angulo para el cual se impacta en la bala ofensiva
+            //a partir de las ec, cinematicas xo=xd y yd=yo
             thetaD=atan((Yo-Yd+V2ini*t*sin((anglei)*pi/180)-2*G*t+2*G)/(Xd-V2ini*t*cos((anglei)*pi/180)));
             Vd=((Yo-Yd+V2ini*t*sin((anglei)*pi/180))-2*G*t+2*G)/((t-2)*sin(thetaD));
+            //se halla las posiciones a las que impacta la bala
             x=V2ini*cos((anglei)*pi/180)*t;
             y=Yo +V2ini*sin((anglei)*pi/180)*t-(0.5*G*t*t);
             ImprimirDatos(thetaD*180/pi,Vd,x,y,t);
@@ -135,10 +140,12 @@ void canionDefensivo::disparoSinAfectacion(float Yo, int anglei, int V2ini)
             //a partir de las ec, cinematicas xo=xd y yd=yo
             thetaD=atan((Yo-Yd+V2ini*t*sin((anglei)*pi/180)-2*G*t+2*G)/(Xd-V2ini*t*cos((anglei)*pi/180)));
             Vd=((Yo-Yd+V2ini*t*sin((anglei)*pi/180))-2*G*t+2*G)/((t-2)*sin(thetaD));
+            //se halla las posiciones alas que impacta la bala
             x=V2ini*cos((anglei)*pi/180)*t;
             y=Yo +V2ini*sin((anglei)*pi/180)*t-(0.5*G*t*t);
             //tiempo (con el retraso) al cual la posicion en y de la bala defensiva es cero
             tfinal=2+(Vd*sin(thetaD)+sqrt(Vd*sin(thetaD)*Vd*sin(thetaD)+2*G*Yd))/G;
+            // se verifica si la distancia (incluyendo el radido de detonacion), permite realizar el disparo sin afectacion
             if(tfinal>=(2+(Xd-Xd*0.025)/(Vd*cos(thetaD)))){
                 t1=t1*1.5;
                 impacto--;

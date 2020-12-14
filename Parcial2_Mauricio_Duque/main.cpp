@@ -13,7 +13,7 @@ int main()
     cout<<"Altura del canion Ofensivo (m): ";
     cin>>Yo;
     disOfensivo.setYo(Yo);
-    cout<<"Ingrese la distancia de separacion de los caniones (m): ";
+    cout<<"Distancia de separacion de los caniones (m): ";
     cin>>d;
     disOfensivo.setD(d);
     disDefensivo.setXd(d);
@@ -28,7 +28,7 @@ int main()
         cout<<"2.Para generar disparos defensivos"<<endl;
         cout<<"3.Para generar disparos defensivos, dado un disparo ofensivo"<<endl;
         cout<<"4.Para generar disparos defensivos,dado un disparo ofensivo sin afectar la integridad de los caniones"<<endl;
-        cout<<"5.para realizar un contraataque ofensivo"<<endl;
+        cout<<"5.Para realizar un contraataque ofensivo"<<endl;
         cout<<"Ingrese la opcion que desea realizar:";
         cin>>a;
         cout<<endl;
@@ -52,7 +52,7 @@ int main()
             cin>>VinO;
             cout<<"Angulo de la bala ofensiva(grados): ";
             cin>>angleO;
-            disDefensivo.disparoDefensa(Yo,d,Yd,angleO,VinO);
+            disDefensivo.disparoDefensa(Yo,angleO,VinO);
          break;
          case 4:
             cout<<"Ingrese los parametros del espia"<<endl;
@@ -60,7 +60,7 @@ int main()
             cin>>VinO;
             cout<<"Angulo de la bala ofensiva(grados): ";
             cin>>angleO;
-            disDefensivo.disparoSinAfectacion(Yo,d,Yd,angleO,VinO);
+            disDefensivo.disparoSinAfectacion(Yo,angleO,VinO);
          break;
          case 5:
             cout<<"Ingrese los parametros del espia"<<endl;

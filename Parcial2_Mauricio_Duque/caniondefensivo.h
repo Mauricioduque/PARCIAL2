@@ -16,6 +16,8 @@ private:
     float dd=0.025*d;
     float pi=3.1416;
     float G=9.81;
+    float angs[3]={};
+    float vels[3]={};
 
 
 
@@ -24,8 +26,8 @@ public:
     canionDefensivo();
     void disparosDefensivos(float Xo,float Yo,int Vini);
     void ImprimirDatos(float angle,float V0,float x,float y,float t);
-    void disparoDefensa(float Yo,float Xd,float Yd,int anglei, int V2ini);
-    void disparoSinAfectacion(float Yo,float Xd,float Yd,int anglei, int V2ini);
+    void disparoDefensa(float Yo,int anglei, int V2ini);
+    void disparoSinAfectacion(float Yo,int anglei, int V2ini);
     float distanciaEuclidiana(float x1,float x2,float y1,float y2);
 
 

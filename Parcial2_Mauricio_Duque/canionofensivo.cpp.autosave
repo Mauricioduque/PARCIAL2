@@ -98,6 +98,7 @@ void canionOfensivo::contrataque(float Xd, float Yd, float angleD, float Vd)
     float C1,C2,L1,L2,R,A,B,C,t1,t,alphaO,Vo,x,y;
 
     //constantes para determinar el  tiempo en el cual el disparo defensivo,destruye al ofensivo
+    //se hallan a partir de la distancia euclidinana con los valores de las ecuaciones cinematicas
     C1=Xd+2*Vd*cos(angleD*pi/180);
     L1=Vd*cos(angleD*pi/180)+vels[1]*cos(angs[1]*pi/180);
     C2=Yd-Yo-2*G-2*Vd*sin(angleD*pi/180);
@@ -107,12 +108,14 @@ void canionOfensivo::contrataque(float Xd, float Yd, float angleD, float Vd)
     B=2*(C2*L2-C1*L1);
     C=C1*C1+C2*C2-R*R;
     t1=(-B-sqrt(B*B-4*A*C))/(2*A);
-    //se definenen los tiempos para qu el contrataque del disparo ofensivo sea efetivo
+    //se definenen los tiempos para que el contrataque del disparo ofensivo sea efetivo
     if(t1>=3){
         for(impacto=1;impacto<4;impacto++){
             t=3+((t1-3)/(4.0))*impacto;
+            // se hallan los valores del angulo y la velocidad de la bala ofensiva que destruan la bala defensiva
             alphaO=atan((Yd-Yo+Vd*sin(angleD*pi/180)*(t-2)+G*0.5*(5-2*t))/(Xd-Vd*cos(angleD*pi/180)*(t-2)));
             Vo=(Xd-Vd*cos(angleD*pi/180)*(t-2))/((t-3)*cos(alphaO));
+            //se hallan las posiciones en la que impacta la bala ofensiva
             x=Vo*cos(alphaO)*(t-3);
             y=Yo +Vo*sin(alphaO)*(t-3)-(0.5*G*(t-3)*(t-3));
             ImprimirDatos(alphaO*180/pi,Vo,x,y,t);
