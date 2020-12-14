@@ -116,7 +116,7 @@ void canionDefensivo::disparoSinAfectacion(float Yo, float Xd, float Yd, int ang
     int impacto;
     float x=0, y=0,t2;
     float t=0,thetaD,Vd,tfinal;
-    //tamaño del intervalo donde se puede disparar
+    //tamaño del intervalo de tiempo donde se puede disparar
     float t1=(2*V2ini*cos((anglei)*pi/180))/(Xd-0.05*Xd);
     x=V2ini*cos((anglei)*pi/180)*2;
     y=Yo +V2ini*sin((anglei)*pi/180)*2-(0.5*G*2*2);

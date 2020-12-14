@@ -8,6 +8,7 @@ int main()
     float Vini,VinO,angleO;
     int a;
     float d,Yo,Yd;
+    cout<<"-------SISTEMA DE SIMULACION DE ATAQUES--------"<<endl<<endl;
     cout<<"Ingrese la condiciones iniciales"<<endl;
     cout<<"Altura del canion Ofensivo (m): ";
     cin>>Yo;
@@ -23,18 +24,25 @@ int main()
     disDefensivo.setYd(Yd);
 
     while(true){
+        cout<<"1.Para generar disparos ofensivos"<<endl;
+        cout<<"2.Para generar disparos defensivos"<<endl;
+        cout<<"3.Para generar disparos defensivos, dado un disparo ofensivo"<<endl;
+        cout<<"4.Para generar disparos defensivos,dado un disparo ofensivo sin afectar la integridad de los caniones"<<endl;
+        cout<<"5.para realizar un contraataque ofensivo"<<endl;
         cout<<"Ingrese la opcion que desea realizar:";
         cin>>a;
-        cout<<"Ingrese Velocidad incial de prueba (m/s): ";
-        cin>>Vini;
-        cout<<endl<<endl;
+        cout<<endl;
 
         switch (a) {
          case 1:
+            cout<<"Ingrese Velocidad incial de prueba (m/s): ";
+            cin>>Vini;
             cout<<"Los diferentes parametros, para que el disparo sea efectivo"<<endl;
             disOfensivo.disparosOfensivos(d,Yd,Vini);
          break;
          case 2:
+            cout<<"Ingrese Velocidad incial de prueba (m/s): ";
+            cin>>Vini;
             cout<<"Los diferentes parametros, para que el disparo sea efectivo"<<endl;
             disDefensivo.disparosDefensivos(0,Yo,Vini);
          break;
@@ -66,8 +74,5 @@ int main()
         }
 
     }
-
-
-
     return 0;
 }
